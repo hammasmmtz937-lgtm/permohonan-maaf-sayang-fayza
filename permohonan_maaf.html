@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Maaf Yaaa 💌</title>
+<style>
+  :root{
+    --bg:#fff8f0;
+    --card:#ffffff;
+    --accent:#ff6b81;
+    --muted:#6b6b6b;
+    --shadow: 0 8px 30px rgba(99,99,99,0.08);
+    --glass: rgba(255,255,255,0.65);
+  }
+  *{box-sizing:border-box;font-family:Inter, "Segoe UI", Roboto, sans-serif}
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: linear-gradient(180deg, #fff8f0 0%, #fff1f4 100%);
+    overflow:hidden;
+    padding:32px;
+  }
+  .scene{
+    width:100%;
+    max-width:920px;
+    position:relative;
+  }
+  .title-to{
+    text-align:center;
+    font-size:22px;
+    font-weight:700;
+    background: linear-gradient(90deg,#ff758c,#ff7eb3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+  }
+  .card{
+    background:var(--card);
+    border-radius:18px;
+    padding:34px;
+    box-shadow:var(--shadow);
+    display:grid;
+    grid-template-columns: 1fr 360px;
+    gap:24px;
+    align-items:center;
+  }
+  @media (max-width:820px){
+    .card{grid-template-columns: 1fr; padding:22px;}
+  }
+  .left h1{
+    margin:0 0 8px 0;
+    font-size:28px;
+    color:#222;
+    letter-spacing:0.2px;
+  }
+  .left p{ margin:0 0 18px 0; color:var(--muted); line-height:1.5}
+  .apology{
+    font-size:20px;
+    background: linear-gradient(90deg, #ff9aa2, #ffd6a5);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    font-weight:700;
+    margin-bottom:14px;
+  }
+  .buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    border:0;
+    cursor:pointer;
+    padding:10px 16px;
+    border-radius:12px;
+    font-weight:600;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    transition:transform .15s ease, box-shadow .15s;
+  }
+  .btn:active{transform:translateY(2px)}
+  .btn-accept{background:linear-gradient(90deg,#7ee8fa,#80ffdb);}
+  .btn-prank{background:linear-gradient(90deg,#ffd6a5,#ff9aa2);}
+  .btn-no{background:#f1f1f1;color:#444;}
+  .right{
+    padding:18px;
+    border-radius:12px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+    text-align:center;
+  }
+  .avatar{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    margin:0 auto 12px;
+    display:grid;
+    place-items:center;
+    font-size:48px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    background: linear-gradient(135deg,#fff,#ffeef0);
+    border:6px solid rgba(255,255,255,0.6);
+    color:var(--accent);
+  }
+  .note{ color:var(--muted); font-size:14px; margin-top:10px }
+  .heart{
+    display:inline-block;
+    font-size:40px;
+    transform-origin:center;
+    animation:beat 1.1s infinite;
+    margin-top:8px;
+  }
+  @keyframes beat{
+    0%{transform:scale(1)}
+    25%{transform:scale(1.15)}
+    50%{transform:scale(1)}
+    75%{transform:scale(1.08)}
+    100%{transform:scale(1)}
+  }
+  .confetti{
+    position:fixed;
+    pointer-events:none;
+    inset:0;
+    overflow:hidden;
+    z-index:999;
+  }
+  .footer{
+    margin-top:16px;
+    display:flex;
+    gap:8px;
+    align-items:center;
+  }
+  .footer input{
+    flex:1;
+    padding:10px 12px;
+    border-radius:10px;
+    border:1px dashed rgba(0,0,0,0.06);
+    background:transparent;
+  }
+  .badge{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:999px;
+    background:var(--glass);
+    border:1px solid rgba(255,255,255,0.6);
+    font-size:13px;
+  }
+  .modal{
+    position:fixed;
+    inset:0;
+    display:grid;
+    place-items:center;
+    z-index:1200;
+    background:rgba(0,0,0,0.45);
+    visibility:hidden;
+    opacity:0;
+    transition:.18s;
+  }
+  .modal.show{visibility:visible; opacity:1}
+  .modal .box{
+    background:white;
+    padding:22px;
+    border-radius:14px;
+    max-width:420px;
+    text-align:center;
+    box-shadow:0 12px 40px rgba(0,0,0,0.25);
+  }
+  .confetti-piece{
+    position:absolute;
+    font-size:18px;
+    will-change:transform, top, left, opacity;
+    user-select:none;
+  }
+  .small{font-size:12px}
+</style>
+</head>
+<body>
+  <div class="scene" aria-live="polite">
+    <div class="title-to">💌 Kepada Fayza sayang aku yang cantik 💌</div>
+    <div class="card" role="region" aria-label="Permohonan maaf">
+      <div class="left">
+        <div class="apology">Ups... maaf ya, aku bercandnya jelek sekaliii, dan aku mengaku salah 😬</div>
+        <h1 id="mainTitle">Maaf ya sayanggg fayzaaaa</h1>
+        <p id="mainMsg">Sayanggg... Aku minta maaf karena bercanda yang kurang pas barusan. Aku gak bermaksud tapi reflek aku ni jelek harus dibenerin. Aku janji akan buat ngerubah candaan jelek itu dan belajar lebih peka. Klik tombol di samping — pilih yang lucu atau yang tulus. Kalau ngebales 'maaf diterima', kamu dapat reward pelukan virtual 🎁</p>
+
+        <div class="buttons" role="group" aria-label="Pilihan">
+          <button class="btn btn-accept" id="acceptBtn">Maaf diterima 💖</button>
+          <button class="btn btn-prank" id="prankBtn">Tunjukkan drama! 😜</button>
+          <button class="btn btn-no" id="noBtn">Tunggu... gak yakin</button>
+        </div>
+
+        <div class="footer">
+          <input id="customInput" placeholder="Tambah pesan singkat (opsional) — ketik sesuatu yang manis..." />
+          <span class="badge" id="charCount">0/80</span>
+        </div>
+      </div>
+
+      <div class="right" role="complementary">
+        <div class="avatar" aria-hidden="true">🥺</div>
+        <div class="note">Aku siap diapa apain, asal kamu senyum 🙂</div>
+        <div class="heart" id="heart">❤</div>
+        <div class="note small" style="margin-top:12px">klik "Maaf diterima" untuk efek spesial</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="confetti" id="confetti"></div>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="box">
+      <h3 id="modalTitle">Wah, seru!</h3>
+      <p id="modalText">Terima kasih sudah mau dengar. Mau aku beliin es krim virtual atau pelukan digital?</p>
+      <div style="margin-top:14px;">
+        <button class="btn btn-accept" id="modalBtn1">Es krim 🍨</button>
+        <button class="btn btn-prank" id="modalBtn2">Pelukan 🤗</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const confettiContainer = document.getElementById('confetti');
+  const acceptBtn = document.getElementById('acceptBtn');
+  const prankBtn = document.getElementById('prankBtn');
+  const noBtn = document.getElementById('noBtn');
+  const modal = document.getElementById('modal');
+  const mainTitle = document.getElementById('mainTitle');
+  const mainMsg = document.getElementById('mainMsg');
+  const customInput = document.getElementById('customInput');
+  const charCount = document.getElementById('charCount');
+
+  customInput.addEventListener('input', ()=> {
+    const v = customInput.value.slice(0,80);
+    customInput.value = v;
+    charCount.textContent = v.length + "/80";
+  });
+
+  function throwConfetti(intensity=14){
+    const emojis = ["🎉","💥","✨","💐","💌","🍦","🥺","🌈","🍭","🦄","😅","😍"];
+    for(let i=0;i<intensity;i++){
+      const el = document.createElement('div');
+      el.className = 'confetti-piece';
+      el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      const size = 14 + Math.random()*28;
+      el.style.fontSize = size + "px";
+      el.style.left = (10 + Math.random()*80) + "%";
+      el.style.top = (-10 - Math.random()*20) + "%";
+      el.style.opacity = 1;
+      confettiContainer.appendChild(el);
+
+      const duration = 2000 + Math.random()*2200;
+      const endLeft = (Math.random()*90);
+      const rotate = (Math.random()*720) * (Math.random()<0.5?-1:1);
+      el.animate([
+        { transform: 'translate3d(0,0,0) rotate(0deg)', opacity: 1 },
+        { transform: `translate3d(${endLeft - parseFloat(el.style.left)}vw, ${100+Math.random()*40}vh,0) rotate(${rotate}deg)`, opacity: 0.05 }
+      ], { duration: duration, easing: 'cubic-bezier(.2,.6,.2,1)' });
+
+      setTimeout(()=> el.remove(), duration + 80);
+    }
+  }
+
+  acceptBtn.addEventListener('click', ()=>{
+    throwConfetti(26);
+    mainTitle.textContent = "Yeay! Kamu bikin aku semangat lagi 🎉";
+    mainMsg.textContent = customInput.value.trim()
+      ? `${customInput.value.trim()} — itu bikin senyumku.`
+      : "Terima kasih sudah mau dengerin. Aku janji lebih baik lagi.";
+
+    const heart = document.getElementById('heart');
+    heart.style.transform = "scale(1.4)";
+    setTimeout(()=> heart.style.transform = "", 800);
+
+    setTimeout(()=> modal.classList.add('show'), 700);
+    playBeep();
+  });
+
+  prankBtn.addEventListener('click', ()=>{
+    mainTitle.textContent = "Drama mode: ON 🎭";
+    mainMsg.textContent = "Aku ngerasa kayak aktor sinetron gagal — tapi demi kamu, aku siap perform lagi!";
+    throwConfetti(8);
+    document.querySelector('.card').animate([
+      { transform: 'translateX(0)' },
+      { transform: 'translateX(-8px)' },
+      { transform: 'translateX(8px)' },
+      { transform: 'translateX(0)' }
+    ], { duration: 650, iterations: 1, easing: 'ease-in-out' });
+  });
+
+  noBtn.addEventListener('mouseenter', ()=> {
+    noBtn.style.transform = `translate(${Math.random()*140 - 70}px, ${Math.random()*6 - 3}px)`;
+  });
+  noBtn.addEventListener('click', ()=> {
+    mainTitle.textContent = "Masih galau? Aku sabar kok.";
+    mainMsg.textContent = "Nggak apa-apa butuh waktu. Aku tetap di sini kalau kamu mau ngobrol.";
+    throwConfetti(6);
+  });
+
+  document.getElementById('modalBtn1').addEventListener('click', ()=> {
+    modal.classList.remove('show');
+    mainTitle.textContent = "Es krim virtual yaa 🍨";
+    mainMsg.textContent = "Nih, satu scoop kebahagiaan dan janji tanggung jawab.";
+    throwConfetti(20);
+  });
+  document.getElementById('modalBtn2').addEventListener('click', ()=> {
+    modal.classList.remove('show');
+    mainTitle.textContent = "Pelukan 3x 🤗🤗🤗";
+    mainMsg.textContent = "Peluk virtual terkirim. Semoga hangat sampai ke hati.";
+    throwConfetti(20);
+  });
+
+  function playBeep(){
+    try{
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.type = 'sine';
+      o.frequency.value = 880;
+      g.gain.value = 0.0001;
+      o.connect(g);
+      g.connect(ctx.destination);
+      o.start();
+      g.gain.exponentialRampToValueAtTime(0.08, ctx.currentTime + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.35);
+      o.stop(ctx.currentTime + 0.36);
+    }catch(e){ }
+  }
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === "Escape") modal.classList.remove('show');
+  });
+
+  setTimeout(()=> throwConfetti(6), 700);
+  acceptBtn.addEventListener('mouseover', ()=>{
+    acceptBtn.title = "Klik kalau kamu mau berhenti marah 😀";
+  });
+  document.querySelector('.card').setAttribute('tabindex','0');
+</script>
+</body>
+</html>
