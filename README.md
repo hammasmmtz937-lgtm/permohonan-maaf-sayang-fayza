@@ -293,8 +293,8 @@
     noBtn.style.transform = `translate(${Math.random()*140 - 70}px, ${Math.random()*6 - 3}px)`;
   });
   noBtn.addEventListener('click', ()=> {
-    mainTitle.textContent = "Masih galau? Aku sabar kok.";
-    mainMsg.textContent = "Nggak apa-apa butuh waktu. Aku tetap di sini kalau kamu mau ngobrol.";
+    mainTitle.textContent = "Masih marahh? its okeyyy take ur timee sayangg.";
+    mainMsg.textContent = "Tidaa apa-apa butuh waktu. Aku tetap di sini kalau kamu mau ngobrol.";
     throwConfetti(6);
   });
 
